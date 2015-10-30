@@ -31,20 +31,8 @@ public class JdkSerializeTranscoder extends SerializeTranscoder {
 		} catch (IOException e) {
 			throw new RedisSerializeException(e.getMessage(),e);
 		}finally{
-			if(baos!=null){
-				try {
-					baos.close();
-				} catch (IOException e) {
-				}finally{
-					if(oos!=null){
-						try {
-							oos.close();
-						} catch (IOException e) {
-						}
-					}
-				}
-			}
-			
+			close(baos);
+			close(oos);
 		}
 	}
 
@@ -65,19 +53,8 @@ public class JdkSerializeTranscoder extends SerializeTranscoder {
 		} catch (ClassNotFoundException e) {
 			throw new RedisSerializeException(e.getMessage(),e);
 		}finally{
-			if(bais!=null){
-				try {
-					bais.close();
-				} catch (IOException e) {
-				}finally{
-					if(ois!=null){
-						try {
-							ois.close();
-						} catch (IOException e) {
-						}
-					}
-				}
-			}
+			close(bais);
+			close(ois);
 		}
 	}
 
