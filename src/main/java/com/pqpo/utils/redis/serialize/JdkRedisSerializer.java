@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 import com.pqpo.utils.redis.exception.RedisSerializeException;
 
-public class JdkSerializeTranscoder extends SerializeTranscoder {
+public class JdkRedisSerializer extends AbstractRedisSerializer<Object> {
 
 	@Override
 	public byte[] serialize(Object value) {

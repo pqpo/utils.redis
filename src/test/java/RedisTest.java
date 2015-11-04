@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.pqpo.utils.redis.datasource.RedisTemplate;
+import com.pqpo.utils.redis.serialize.JsonRedisSerializer;
 
 
 public class RedisTest {
@@ -12,15 +13,18 @@ public class RedisTest {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 		RedisTemplate redisTemplate = (RedisTemplate) context.getBean("redisTemplate");
+		JsonRedisSerializer<User> serialize = new JsonRedisSerializer<>(User.class);
+		redisTemplate.setSerializeTranscoder(serialize);
 //		User u = new User();
-//		u.setName("Tom");
-//		u.setAge(23);
-//		u.setScore(100);
-//		redisTemplate.set("Tom", u);
-		User u1 = (User) redisTemplate.get("Tom");
+//		u.setName("Jone");
+//		u.setAge(33);
+//		u.setScore(77);
+//		redisTemplate.set("Jone", u);
+		User u1 = (User) redisTemplate.get("Jone");
 		System.out.println(u1.getName());
 		System.out.println(u1.getAge());
 		System.out.println(u1.getScore());
+		redisTemplate.disconnect();
 		context.close();
 	}
 	
