@@ -5,22 +5,23 @@ import java.io.Serializable;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.pqpo.utils.redis.datasource.RedisTemplate;
+import com.pqpo.utils.redis.serialize.AbstractRedisSerializer;
 import com.pqpo.utils.redis.serialize.JsonRedisSerializer;
 
 
+@SuppressWarnings("unchecked")
 public class RedisTest {
 
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-		RedisTemplate redisTemplate = (RedisTemplate) context.getBean("redisTemplate");
-		JsonRedisSerializer<User> serialize = new JsonRedisSerializer<>(User.class);
-		redisTemplate.setSerializeTranscoder(serialize);
+		RedisTemplate<String,User> redisTemplate = (RedisTemplate<String, User>) context.getBean("redisTemplate");
+		AbstractRedisSerializer<User> serialize = new JsonRedisSerializer<>(User.class);
+		redisTemplate.setValueSerializeTranscoder(serialize);
 //		User u = new User();
-//		u.setName("Jone");
-//		u.setAge(33);
-//		u.setScore(77);
-//		redisTemplate.set("Jone", u);
-		User u1 = (User) redisTemplate.get("Jone");
+//		u.setName("QiuLinmin");
+//		u.setAge(24);
+//		u.setScore(120);
+		User u1 = redisTemplate.get("QiuLinmin");
 		System.out.println(u1.getName());
 		System.out.println(u1.getAge());
 		System.out.println(u1.getScore());

@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 
 import org.apache.log4j.Logger;
 
-public abstract class AbstractRedisSerializer<T> implements RedisSerializer<T> {
+public abstract class AbstractRedisSerializer<T> implements RedisSerializer<T>{
 	
 	public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 	
@@ -13,7 +13,7 @@ public abstract class AbstractRedisSerializer<T> implements RedisSerializer<T> {
 	
 	protected  Logger logger = Logger.getLogger(getClass());
 
-	public abstract byte[] serialize(Object value);
+	public abstract byte[] serialize(T value);
 
 	public abstract T deserialize(byte[] in);
 	

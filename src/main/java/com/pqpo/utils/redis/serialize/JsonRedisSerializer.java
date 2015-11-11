@@ -20,4 +20,5 @@ public class JsonRedisSerializer<T> extends AbstractRedisSerializer<T> {
 		return JSON.parseObject(new String(in,getCharset()), type);
 	}
 
+
 }
