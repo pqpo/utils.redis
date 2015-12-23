@@ -15,8 +15,8 @@ public class RedisTemplate<K,V> implements RedisOperations<K,V> {
 	private final AbstractRedisSerializer<?> defaultValueSerializeTranscoder = new JdkRedisSerializer();
 	private final AbstractRedisSerializer<String> defaultKeySerializeTranscoder = new StringRedisSerializer();
 	
-	private AbstractRedisSerializer keySerializeTranscoder = defaultValueSerializeTranscoder;
-	private AbstractRedisSerializer valueSerializeTranscoder = defaultKeySerializeTranscoder;
+	private AbstractRedisSerializer keySerializeTranscoder = defaultKeySerializeTranscoder;
+	private AbstractRedisSerializer valueSerializeTranscoder = defaultValueSerializeTranscoder;
 
 	public void setKeySerializeTranscoder(AbstractRedisSerializer<?> keySerializeTranscoder) {
 		this.keySerializeTranscoder = keySerializeTranscoder;
